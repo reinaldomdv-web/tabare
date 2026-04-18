@@ -1,0 +1,3045 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tabaré &amp; Fernanda — Un viaje por América en bicicleta</title>
+<meta name="description" content="Dos soñadores a pedal. Uruguay → Alaska. 15 países, 30.847 km, 3.682 días en la ruta." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   v2 — editorial expedition
+   Paleta: crema oat · verde expedición · terracota · tinta · agua
+============================================================ */
+:root{
+  --cream: #e8dfd0;
+  --cream-soft: #efe8dc;
+  --cream-deep: #ddd2bd;
+  --paper: #f4efe6;
+  --ink: #1a1814;
+  --ink-soft: #2d2a25;
+  --ink-mute: #6e685e;
+  --rule: rgba(26,24,20,0.18);
+  --rule-strong: rgba(26,24,20,0.5);
+  --expedition: #3a4a3a;     /* forest dark */
+  --expedition-deep: #2a3528;
+  --terracota: #c07848;
+  --terracota-deep: #a85f32;
+  --sky: #8a9a7a;
+  --alert: #c8432c;
+
+  --f-display: 'Fraunces', 'Times New Roman', serif;
+  --f-sans: 'Geist', 'Helvetica Neue', sans-serif;
+  --f-mono: 'Geist Mono', ui-monospace, monospace;
+}
+
+*,*::before,*::after{ box-sizing: border-box }
+html, body{ margin:0; padding:0 }
+html{ -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; background: var(--cream) }
+body{
+  font-family: var(--f-sans);
+  color: var(--ink);
+  background: var(--cream);
+  font-size: 16px;
+  line-height: 1.55;
+  min-height: 100vh;
+  cursor: default;
+  overflow-x: hidden;
+}
+::selection{ background: var(--terracota); color: var(--paper) }
+
+img{ display:block; max-width:100%; height:auto }
+a{ color: inherit; text-decoration: none }
+button{ font: inherit; color: inherit }
+
+.mono{
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.serif{ font-family: var(--f-display) }
+.italic{
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+/* ------- canvas grid utility ------- */
+.wrap{ padding: 0 clamp(24px, 4vw, 80px) }
+.wrap-narrow{ max-width: 1280px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 80px) }
+
+/* ============================================================
+   TOPBAR — expedition dossier strip
+============================================================ */
+.topbar{
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--cream);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.topbar-row{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 14px clamp(24px, 4vw, 80px);
+}
+.topbar-brand{
+  font-family: var(--f-display);
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 24, "SOFT" 50, "WONK" 0;
+}
+.topbar-brand em{ font-style: italic; color: var(--terracota) }
+.topbar-mid{
+  display: flex; gap: 28px;
+  color: var(--ink-mute);
+  justify-content: center;
+}
+.topbar-mid span strong{
+  color: var(--ink);
+  font-weight: 500;
+}
+.topbar-nav{ display: flex; gap: 24px; align-items: center }
+.topbar-nav a{
+  color: var(--ink-mute);
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+.topbar-nav a::before{
+  content: attr(data-num);
+  display: inline;
+  color: var(--terracota);
+  margin-right: 6px;
+  font-weight: 500;
+}
+.topbar-nav a:hover{ color: var(--ink) }
+.topbar-cta{
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 14px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px;
+  transition: background 0.2s;
+}
+.topbar-cta:hover{ background: var(--terracota) }
+.topbar-cta .dot{
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #6fd38a;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.lang-switch{
+  display: inline-flex; align-items: center; gap: 4px;
+  background: transparent;
+  border: 1px solid var(--rule-strong);
+  padding: 4px 8px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--ink-mute);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.lang-switch:hover{ border-color: var(--ink) }
+.lang-switch span{ padding: 0 2px; transition: color 0.2s }
+.lang-switch span.active{ color: var(--terracota); font-weight: 500 }
+.lang-switch .sep{ color: var(--rule-strong); padding: 0 1px }
+
+@media (max-width: 900px){
+  .topbar-mid{ display: none }
+}
+@media (max-width: 640px){
+  .topbar-nav a[data-num="02"],
+  .topbar-nav a[data-num="04"]{ display: none }
+}
+
+/* ============================================================
+   HERO — full-bleed image right, expedition datasheet left
+============================================================ */
+.hero{
+  padding-top: 54px; /* topbar height */
+  min-height: 100vh;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid{
+  display: grid;
+  grid-template-columns: minmax(380px, 42%) 1fr;
+  min-height: calc(100vh - 54px);
+}
+.hero-left{
+  padding: 40px clamp(24px, 4vw, 56px) 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--rule);
+  position: relative;
+}
+.hero-right{
+  position: relative;
+  background: var(--ink);
+  overflow: hidden;
+}
+.hero-right img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: saturate(0.92) contrast(1.03);
+}
+/* Subtle duotone warmth layer */
+.hero-right::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, transparent 40%, rgba(26,24,20,0.12) 100%);
+  pointer-events: none;
+}
+
+.hero-eyebrow{
+  display: flex; align-items: center; gap: 12px;
+  color: var(--ink-mute);
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.hero-eyebrow .num{
+  color: var(--terracota);
+  font-weight: 500;
+}
+.hero-eyebrow .rule{
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  max-width: 100px;
+}
+
+.hero-title{
+  font-family: var(--f-display);
+  font-size: clamp(54px, 6.5vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.028em;
+  font-weight: 380;
+  font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
+  margin: 28px 0 0;
+  color: var(--ink);
+}
+.hero-title em{
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--terracota);
+}
+.hero-sub{
+  font-family: var(--f-display);
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 42ch;
+  margin: 32px 0 0;
+  font-weight: 380;
+  font-variation-settings: "opsz" 18, "SOFT" 40, "WONK" 0;
+}
+.hero-sub em{ font-style: italic; color: var(--expedition) }
+
+/* Expedition datasheet */
+.hero-sheet{
+  margin-top: auto;
+  padding-top: 36px;
+}
+.hero-sheet-title{
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-sheet-title::before{
+  content: ""; width: 24px; height: 1px; background: var(--terracota);
+}
+.hero-sheet-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule);
+}
+.hero-sheet-cell{
+  padding: 14px 12px 12px 0;
+  border-right: 1px solid var(--rule);
+}
+.hero-sheet-cell:last-child{ border-right: 0 }
+.hero-sheet-cell dt{
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0 0 6px;
+}
+.hero-sheet-cell dd{
+  font-family: var(--f-display);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 400;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 48, "SOFT" 40, "WONK" 0;
+}
+.hero-sheet-cell dd small{
+  font-family: var(--f-mono);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--ink-mute);
+  margin-left: 4px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-actions{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.btn-primary{
+  background: var(--ink);
+  color: var(--paper);
+  padding: 14px 22px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 12px;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-primary:hover{ background: var(--terracota) }
+.btn-primary .arr{
+  width: 20px; height: 1px; background: currentColor; position: relative;
+  transition: width 0.2s;
+}
+.btn-primary .arr::after{
+  content:""; position: absolute; right: 0; top: -3px;
+  width: 7px; height: 7px; border-top: 1px solid currentColor; border-right: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+.btn-primary:hover .arr{ width: 28px }
+.btn-ghost{
+  color: var(--ink);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-strong);
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-ghost:hover{ color: var(--terracota); border-color: var(--terracota) }
+
+/* Hero-right overlays: photo credit + crosshair marker */
+.hero-credit{
+  position: absolute;
+  right: 20px; bottom: 20px;
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,0.75);
+  text-align: right;
+  line-height: 1.6;
+}
+.hero-credit strong{
+  color: var(--paper);
+  font-weight: 500;
+}
+.hero-tag{
+  position: absolute;
+  top: 24px; right: 24px;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(244,239,230,0.92);
+  backdrop-filter: blur(4px);
+  padding: 8px 12px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.hero-tag .dot{
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--alert);
+  animation: pulse 2s infinite;
+}
+
+/* Corner coordinates — editorial print detail */
+.hero-coord{
+  position: absolute;
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  pointer-events: none;
+}
+.hero-coord.tl{ top: 20px; left: clamp(24px, 4vw, 56px) }
+.hero-coord.bl{ bottom: 20px; left: clamp(24px, 4vw, 56px) }
+
+@media (max-width: 1000px){
+  .hero-grid{ grid-template-columns: 1fr; min-height: auto }
+  .hero-left{ border-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 48px }
+  .hero-right{ min-height: 64vh }
+  .hero-sheet{ margin-top: 40px }
+}
+@media (max-width: 560px){
+  .hero-sheet-grid{ grid-template-columns: repeat(2, 1fr) }
+  .hero-sheet-cell{
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 12px 12px 0;
+  }
+  .hero-sheet-cell:nth-child(2n){ border-right: 0 }
+  .hero-sheet-cell:nth-child(3),
+  .hero-sheet-cell:nth-child(4){ border-bottom: 0 }
+  .hero-coord{ display: none }
+}
+
+/* ============================================================
+   MARQUEE — news-ticker under hero (places visited)
+============================================================ */
+.marquee{
+  background: var(--ink);
+  color: var(--cream);
+  padding: 16px 0;
+  border-top: 1px solid var(--ink-soft);
+  overflow: hidden;
+  position: relative;
+}
+.marquee-track{
+  display: flex;
+  gap: 42px;
+  white-space: nowrap;
+  animation: marquee 90s linear infinite;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.marquee-track span{
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.marquee-track span::after{
+  content: "✦"; color: var(--terracota); opacity: 0.6;
+}
+@keyframes marquee{
+  to { transform: translateX(-50%) }
+}
+
+/* ============================================================
+   SECTION HEADER STYLE — editorial
+============================================================ */
+.sec{
+  padding: clamp(80px, 10vh, 140px) 0;
+  position: relative;
+}
+.sec-dossier{
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: clamp(48px, 7vh, 88px);
+  border-top: 1px solid var(--ink);
+  padding-top: 28px;
+}
+.sec-dossier-meta{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.sec-dossier-meta .num{
+  font-family: var(--f-display);
+  font-size: 44px;
+  color: var(--terracota);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 48, "SOFT" 50, "WONK" 1;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.sec-dossier-meta span{ line-height: 1.5 }
+
+.sec-dossier-title{
+  font-family: var(--f-display);
+  font-size: clamp(44px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-weight: 380;
+  font-variation-settings: "opsz" 96, "SOFT" 40, "WONK" 0;
+  color: var(--ink);
+  max-width: 18ch;
+  margin: 0;
+}
+.sec-dossier-title em{
+  font-style: italic;
+  color: var(--terracota);
+  font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
+}
+.sec-dossier-lede{
+  grid-column: 2;
+  max-width: 48ch;
+  font-family: var(--f-display);
+  font-size: clamp(17px, 1.3vw, 19px);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-top: 28px;
+  font-weight: 380;
+  font-variation-settings: "opsz" 18, "SOFT" 40, "WONK" 0;
+}
+
+@media (max-width: 760px){
+  .sec-dossier{ grid-template-columns: 1fr; gap: 24px }
+  .sec-dossier-meta{ flex-direction: row; gap: 16px; align-items: baseline }
+  .sec-dossier-meta .num{ font-size: 36px; margin: 0 }
+  .sec-dossier-lede{ grid-column: 1 }
+}
+
+/* ============================================================
+   RUTA RECORRIDA — 15 países index
+============================================================ */
+.ruta{
+  background: var(--cream);
+  border-top: 1px solid var(--ink);
+}
+.ruta-inner{
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 38%);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.ruta-list{
+  display: flex;
+  flex-direction: column;
+}
+.ruta-country{
+  display: grid;
+  grid-template-columns: 48px 1fr auto auto;
+  gap: 24px;
+  align-items: baseline;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+  transition: padding 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+.ruta-country:first-child{ border-top: 1px solid var(--rule) }
+.ruta-country:hover{
+  padding-left: 12px;
+}
+.ruta-country:hover .ruta-country-name{ color: var(--terracota) }
+.ruta-country .num{
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.12em;
+}
+.ruta-country-name{
+  font-family: var(--f-display);
+  font-size: clamp(24px, 2.6vw, 36px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  transition: color 0.2s;
+  font-variation-settings: "opsz" 48, "SOFT" 40, "WONK" 0;
+}
+.ruta-country-name em{
+  font-style: italic;
+  color: var(--terracota);
+  font-variation-settings: "opsz" 48, "SOFT" 100, "WONK" 1;
+}
+.ruta-country-year{
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.08em;
+  text-align: right;
+  min-width: 90px;
+}
+.ruta-country-km{
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink);
+  letter-spacing: 0.08em;
+  min-width: 70px;
+  text-align: right;
+}
+.ruta-country.active{
+  background: var(--cream-deep);
+  padding-left: 16px;
+  padding-right: 16px;
+  border-color: var(--rule-strong);
+}
+.ruta-country.active .ruta-country-name{ color: var(--terracota) }
+
+/* Right side — snapshot for currently-hovered country */
+.ruta-snapshot{
+  position: sticky;
+  top: 90px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.ruta-snap-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.ruta-snap-head strong{
+  color: var(--terracota);
+  font-weight: 500;
+}
+.ruta-snap-country{
+  font-family: var(--f-display);
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  font-variation-settings: "opsz" 72, "SOFT" 40, "WONK" 0;
+}
+.ruta-snap-country em{
+  font-style: italic;
+  color: var(--terracota);
+  font-variation-settings: "opsz" 72, "SOFT" 100, "WONK" 1;
+}
+.ruta-snap-quote{
+  font-family: var(--f-display);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin: 0;
+  font-variation-settings: "opsz" 18, "SOFT" 70, "WONK" 1;
+  border-left: 2px solid var(--terracota);
+  padding-left: 14px;
+}
+.ruta-snap-data{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+}
+.ruta-snap-data > div{
+  border-right: 1px solid var(--rule);
+  padding-right: 12px;
+}
+.ruta-snap-data > div:last-child{ border-right: 0 }
+.ruta-snap-data dt{
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0 0 4px;
+}
+.ruta-snap-data dd{
+  font-family: var(--f-display);
+  font-size: 20px;
+  margin: 0;
+  font-variation-settings: "opsz" 48, "SOFT" 30, "WONK" 0;
+}
+
+/* ------- World map ------- */
+.ruta-mapwrap{
+  margin: 0 auto clamp(48px, 7vh, 88px);
+  max-width: 620px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.ruta-mapchrome{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.ruta-mapchrome strong{ color: var(--terracota); font-weight: 500 }
+.ruta-mapchrome .mc-r{ display: flex; gap: 18px }
+.ruta-mapchrome .mc-r span:first-child{ color: var(--ink) }
+
+.ruta-mapcanvas{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 750 / 1100;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(192,120,72,0.04), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(26,24,20,0.025) 0 1px, transparent 1px 60px),
+    repeating-linear-gradient(90deg, rgba(26,24,20,0.025) 0 1px, transparent 1px 60px),
+    var(--paper);
+}
+.ruta-mapcanvas svg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.ruta-mapcanvas .land{
+  fill: rgba(58,74,58,0.08);
+  stroke: var(--ink-soft);
+  stroke-width: 0.8;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.ruta-mapcanvas .lake{ fill: var(--paper); stroke: var(--ink-soft); stroke-width: 0.6 }
+.ruta-mapcanvas .grat{ stroke: rgba(26,24,20,0.18); stroke-width: 0.4; fill: none; stroke-dasharray: 1 4 }
+.ruta-mapcanvas .route{
+  fill: none;
+  stroke: var(--terracota);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  filter: drop-shadow(0 1px 0 rgba(168,95,50,0.3));
+}
+.ruta-mapcanvas .route-future{
+  fill: none;
+  stroke: var(--terracota);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 5;
+  stroke-linecap: round;
+  opacity: 0;
+}
+.ruta-mapwrap.is-playing .ruta-mapcanvas .route-future{
+  animation:
+    futureFade 1.2s ease-out 5.2s forwards,
+    futureFlow 2.6s linear 5.2s infinite;
+}
+@keyframes futureFade{
+  to{ opacity: 0.55 }
+}
+@keyframes futureFlow{
+  from{ stroke-dashoffset: 0 }
+  to{ stroke-dashoffset: -16 }
+}
+.ruta-mapcanvas .travel-dot{
+  fill: var(--terracota);
+  stroke: var(--paper);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 3px rgba(192,120,72,0.6));
+}
+.ruta-mapcanvas .travel-halo{
+  fill: none;
+  stroke: var(--terracota);
+  stroke-width: 1;
+  opacity: 0.4;
+}
+.ruta-mapcanvas .compass-ring{
+  fill: none;
+  stroke: rgba(26,24,20,0.15);
+  stroke-width: 0.4;
+  stroke-dasharray: 2 3;
+}
+.ruta-mapcanvas .marker-stop{
+  opacity: 0;
+}
+.ruta-mapwrap.is-playing .ruta-mapcanvas .marker-stop{
+  animation: markerIn 0.4s ease-out forwards;
+}
+@keyframes markerIn{
+  from{ opacity: 0 }
+  to{ opacity: 1 }
+}
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(1){ animation-delay: 0.3s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(2){ animation-delay: 0.6s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(3){ animation-delay: 0.9s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(4){ animation-delay: 1.2s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(5){ animation-delay: 1.5s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(6){ animation-delay: 1.9s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(7){ animation-delay: 2.2s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(8){ animation-delay: 2.5s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(9){ animation-delay: 2.8s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(10){ animation-delay: 3.1s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(11){ animation-delay: 3.4s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(12){ animation-delay: 3.7s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(13){ animation-delay: 4.0s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(14){ animation-delay: 4.3s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(15){ animation-delay: 4.9s }
+.ruta-mapwrap.is-playing .ruta-mapcanvas .stops .marker-stop:nth-child(16){ animation-delay: 5.6s }
+.ruta-mapcanvas .marker-stop circle{
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1.2;
+  cursor: pointer;
+  transition: fill 0.15s, stroke 0.15s, r 0.15s;
+}
+.ruta-mapcanvas .marker-stop text{
+  font-family: var(--f-mono);
+  font-size: 7px;
+  fill: var(--ink);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  font-weight: 500;
+}
+.ruta-mapcanvas .marker-stop:hover circle{ fill: var(--terracota); stroke: var(--terracota) }
+.ruta-mapcanvas .marker-stop:hover text{ fill: var(--paper) }
+.ruta-mapcanvas .marker-stop.active circle{ fill: var(--terracota); stroke: var(--terracota) }
+.ruta-mapcanvas .marker-stop.active text{ fill: var(--paper) }
+.ruta-mapcanvas .marker-stop.goal circle{ fill: var(--paper); stroke-dasharray: 2 2; stroke: var(--terracota) }
+.ruta-mapcanvas .marker-stop.goal text{ fill: var(--terracota) }
+
+.ruta-mapcanvas .marker-now{
+  pointer-events: none;
+}
+.ruta-mapcanvas .marker-now .pulse{
+  fill: var(--terracota);
+  opacity: 0.5;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: mapPulse 2.4s ease-out infinite;
+}
+@keyframes mapPulse{
+  0%{ transform: scale(1); opacity: 0.55 }
+  100%{ transform: scale(4); opacity: 0 }
+}
+.ruta-mapcanvas .marker-now .core{ fill: var(--terracota) }
+.ruta-mapcanvas .marker-now .ring{ fill: none; stroke: var(--terracota); stroke-width: 1 }
+.ruta-mapcanvas .nowlabel{
+  font-family: var(--f-mono);
+  font-size: 8px;
+  fill: var(--ink);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.ruta-mapcanvas .nowlabel-line{ stroke: var(--ink); stroke-width: 0.5 }
+.ruta-mapcanvas .citylabel{
+  font-family: var(--f-mono);
+  font-size: 6.5px;
+  fill: var(--ink-mute);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ruta-mapcanvas .ocean{
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 22px;
+  fill: rgba(58,74,58,0.32);
+  font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
+  letter-spacing: 0.4em;
+}
+
+/* ---- Map mode toggle ---- */
+.mapmode-toggle{
+  display: inline-flex;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  overflow: hidden;
+  height: 22px;
+}
+.mapmode-btn{
+  background: transparent;
+  border: 0;
+  padding: 0 10px;
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  line-height: 1;
+}
+.mapmode-btn + .mapmode-btn{ border-left: 1px solid var(--ink) }
+.mapmode-btn:hover{ color: var(--ink) }
+.mapmode-btn.is-active{
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---- 3D Globe canvas ---- */
+.ruta-globecanvas{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 750 / 1100;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(168,95,50,0.08), transparent 65%),
+    #12110d;
+  overflow: hidden;
+  display: none;
+}
+.ruta-globecanvas.is-visible{ display: block }
+.ruta-mapwrap[data-mode="globe"] .ruta-mapcanvas{ display: none }
+.ruta-mapwrap[data-mode="globe"] .ruta-globecanvas{ display: block }
+
+.ruta-globecanvas::before,
+.ruta-globecanvas::after{
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(232,223,208,0.08);
+  pointer-events: none;
+  z-index: 2;
+}
+.ruta-globecanvas::after{
+  inset: 14px;
+  border: 1px dashed rgba(232,223,208,0.04);
+}
+
+.ruta-globe-chrome-l,
+.ruta-globe-chrome-r{
+  position: absolute;
+  top: 18px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+}
+.ruta-globe-chrome-l{ left: 22px }
+.ruta-globe-chrome-r{ right: 22px; text-align: right; align-items: flex-end }
+.ruta-globecanvas .lbl-mono{
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(232,223,208,0.45);
+}
+.ruta-globecanvas .lbl-mono:first-child{ color: var(--terracota) }
+
+.ruta-globe-host{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.ruta-globe-host canvas{ display: block }
+
+.ruta-globe-loading{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 4;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.ruta-globe-loading.is-hidden{ opacity: 0 }
+.ruta-globe-loading-dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--terracota);
+  opacity: 0.35;
+  animation: globeLoadPulse 1.4s ease-in-out infinite;
+}
+.ruta-globe-loading-dot:nth-child(2){ animation-delay: 0.2s }
+.ruta-globe-loading-dot:nth-child(3){ animation-delay: 0.4s }
+@keyframes globeLoadPulse{
+  0%, 100%{ opacity: 0.2; transform: scale(0.8) }
+  50%{ opacity: 1; transform: scale(1.2) }
+}
+
+/* Custom globe point labels (rendered as HTML by globe.gl) */
+.globe-label{
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(232,223,208,0.78);
+  padding: 3px 6px;
+  background: rgba(18,17,13,0.65);
+  border: 1px solid rgba(232,223,208,0.12);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, -120%);
+  font-weight: 500;
+}
+.globe-label.is-current{
+  color: var(--terracota);
+  border-color: var(--terracota);
+  background: rgba(168,95,50,0.14);
+}
+.globe-label-ahora{
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  padding: 4px 8px;
+  background: rgba(18,17,13,0.85);
+  border: 1px solid var(--terracota);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, -180%);
+  font-weight: 500;
+  box-shadow: 0 0 12px rgba(168,95,50,0.35);
+}
+
+.ruta-maplegend{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.ruta-maplegend .lg{ display: inline-flex; align-items: center; gap: 8px }
+.ruta-maplegend .lg-line{ width: 28px; height: 2px; background: var(--terracota) }
+.ruta-maplegend .lg-line.dash{
+  background: repeating-linear-gradient(90deg, var(--terracota) 0 4px, transparent 4px 8px);
+  opacity: 0.6;
+}
+.ruta-maplegend .lg-dot{
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--terracota);
+  box-shadow: 0 0 0 3px rgba(192,120,72,0.25);
+}
+
+@media (max-width: 760px){
+  .ruta-mapchrome{ flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 16px }
+  .ruta-mapchrome .mc-r{ gap: 12px; flex-wrap: wrap }
+  .ruta-mapcanvas .ocean{ font-size: 16px }
+  .ruta-mapcanvas .marker-stop text{ font-size: 9px }
+  .ruta-mapcanvas .citylabel{ font-size: 8px }
+  .ruta-mapcanvas .nowlabel{ font-size: 9px }
+}
+
+@media (max-width: 900px){
+  .ruta-inner{ grid-template-columns: 1fr }
+  .ruta-snapshot{ position: static }
+}
+@media (max-width: 560px){
+  .ruta-country{ grid-template-columns: 32px 1fr auto; gap: 14px }
+  .ruta-country-year{ display: none }
+}
+
+/* ============================================================
+   VIDEO — un tramo en cámara
+============================================================ */
+.video-sec{
+  background: var(--ink);
+  color: var(--cream);
+  border-top: 1px solid var(--ink);
+  padding: clamp(80px, 10vh, 130px) 0 clamp(80px, 10vh, 120px);
+  position: relative;
+  overflow: hidden;
+}
+.video-sec::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(192,120,72,0.18), transparent 50%),
+    radial-gradient(ellipse at 90% 100%, rgba(58,74,58,0.25), transparent 55%);
+  pointer-events: none;
+}
+.video-sec .wrap-narrow{ position: relative; z-index: 1 }
+.video-sec .sec-dossier{ border-top-color: var(--cream) }
+.video-sec .sec-dossier-meta{ color: rgba(232,223,208,0.7) }
+.video-sec .sec-dossier-meta .num{ color: var(--terracota) }
+.video-sec .sec-dossier-title{ color: var(--cream) }
+.video-sec .sec-dossier-title em{ color: var(--terracota) }
+.video-sec .sec-dossier-lede{ color: rgba(232,223,208,0.8); margin-top: -20px }
+
+.video-frame{
+  margin-top: clamp(20px, 3vh, 40px);
+  border: 1px solid rgba(232,223,208,0.18);
+  background: #0a0908;
+  position: relative;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(192,120,72,0.1);
+}
+.video-frame-bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  border-bottom: 1px solid rgba(232,223,208,0.12);
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(232,223,208,0.55);
+}
+.video-frame-bar .vfb-l{ display: inline-flex; align-items: center; gap: 10px }
+.video-frame-bar .vfb-rec{
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--alert);
+  animation: vrec 1.6s ease-in-out infinite;
+}
+@keyframes vrec{ 50%{ opacity: 0.3 } }
+.video-frame-bar strong{ color: var(--cream); font-weight: 500 }
+.video-frame-player{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #000;
+}
+.video-frame-player iframe{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+.video-frame-foot{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  padding: 18px 22px;
+  border-top: 1px solid rgba(232,223,208,0.12);
+  align-items: end;
+}
+.video-frame-cap{
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.3;
+  color: var(--cream);
+  font-variation-settings: "opsz" 32, "SOFT" 80, "WONK" 1;
+  margin: 0;
+  max-width: 56ch;
+}
+.video-frame-byline{
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(232,223,208,0.55);
+  text-align: right;
+  line-height: 1.5;
+}
+.video-frame-byline strong{ color: var(--cream); font-weight: 500 }
+
+.video-sec-cta{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(232,223,208,0.12);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.video-sec-cta .ytlink{
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--terracota);
+  padding-bottom: 6px;
+  transition: color 0.2s;
+}
+.video-sec-cta .ytlink:hover{ color: var(--terracota) }
+.video-sec-cta .ytmeta{
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(232,223,208,0.5);
+}
+.video-sec-cta .ytmeta strong{ color: var(--cream); font-weight: 500 }
+
+@media (max-width: 760px){
+  .video-frame-foot{ grid-template-columns: 1fr }
+  .video-frame-byline{ text-align: left }
+}
+
+/* ============================================================
+   CRÓNICAS — magazine layout
+============================================================ */
+.cronicas{
+  background: var(--paper);
+  border-top: 1px solid var(--ink);
+}
+.cronicas-grid{
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.cr{
+  background: var(--paper);
+  padding: 32px 24px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.cr:hover{ background: var(--cream-soft) }
+.cr-photo{
+  aspect-ratio: 4/3;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.cr-photo img{ width:100%; height:100%; object-fit: cover; transition: transform 0.6s }
+.cr:hover .cr-photo img{ transform: scale(1.04) }
+.cr-photo-ph{
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, #2d2a25 0 8px, #3a352e 8px 16px);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(232,223,208,0.6);
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 16px;
+  line-height: 1.6;
+}
+.cr-tag{
+  position: absolute; top: 12px; left: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 5px 9px;
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.cr-meta{
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.cr-meta .cr-country{ color: var(--terracota); font-weight: 500 }
+.cr-title{
+  font-family: var(--f-display);
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin: 0;
+  font-variation-settings: "opsz" 48, "SOFT" 40, "WONK" 0;
+  transition: color 0.2s;
+}
+.cr:hover .cr-title{ color: var(--terracota) }
+.cr-lede{
+  font-family: var(--f-display);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+  font-weight: 380;
+  font-variation-settings: "opsz" 18, "SOFT" 40, "WONK" 0;
+}
+.cr-read{
+  margin-top: auto;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  display: inline-flex; align-items: center; gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+.cr:hover .cr-read{ color: var(--terracota) }
+
+@media (max-width: 900px){
+  .cronicas-grid{ grid-template-columns: 1fr }
+}
+
+/* ============================================================
+   PULL QUOTE — giant editorial
+============================================================ */
+.pull-sec{
+  background: var(--expedition);
+  color: var(--cream);
+  padding: clamp(100px, 12vh, 160px) 0;
+  position: relative;
+  overflow: hidden;
+}
+.pull-sec::before{
+  content: "“";
+  position: absolute;
+  top: -50px; left: 40px;
+  font-family: var(--f-display);
+  font-size: 480px;
+  line-height: 1;
+  color: var(--terracota);
+  opacity: 0.12;
+  font-style: italic;
+  pointer-events: none;
+}
+.pull-quote{
+  font-family: var(--f-display);
+  font-size: clamp(36px, 5vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 380;
+  font-style: italic;
+  max-width: 22ch;
+  margin: 0 auto;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--cream);
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+.pull-quote em{
+  font-style: italic;
+  color: var(--terracota);
+}
+.pull-attrib{
+  margin-top: 36px;
+  display: flex;
+  gap: 16px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(232,223,208,0.7);
+}
+.pull-attrib .dot{ color: var(--terracota) }
+
+/* ============================================================
+   LIBRO — split editorial with real photo
+============================================================ */
+.libro{
+  background: var(--cream);
+  border-top: 1px solid var(--ink);
+}
+.libro-inner{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+}
+.libro-photo{
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.45), transparent 65%),
+    radial-gradient(ellipse at 30% 30%, rgba(232,223,208,0.06), transparent 60%),
+    var(--ink);
+  min-height: 640px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 40px 80px;
+}
+.libro-photo img.bookcover{
+  width: auto;
+  height: auto;
+  max-width: 78%;
+  max-height: 78%;
+  object-fit: contain;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 -8px 18px rgba(0,0,0,0.5),
+    0 30px 50px -10px rgba(0,0,0,0.65),
+    0 60px 80px -20px rgba(0,0,0,0.55),
+    -2px 0 0 rgba(0,0,0,0.4);
+  transform: rotate(-1.2deg);
+  transition: transform 0.6s ease;
+}
+.libro-photo:hover img.bookcover{ transform: rotate(0deg) scale(1.02) }
+.libro-photo-caption{
+  position: absolute;
+  bottom: 20px; left: 20px; right: 20px;
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,0.9);
+  line-height: 1.6;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+.libro-photo-caption strong{ color: var(--paper); font-weight: 500 }
+.libro-photo-frame{
+  position: absolute;
+  top: 20px; right: 20px;
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,0.6);
+  text-align: right;
+}
+
+.libro-body{
+  padding: clamp(40px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.libro-chip{
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  margin-bottom: 4px;
+}
+.libro-chip::before{
+  content: ""; width: 24px; height: 1px; background: var(--terracota);
+}
+.libro-title{
+  font-family: var(--f-display);
+  font-size: clamp(40px, 4.2vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-weight: 380;
+  margin: 0;
+  font-variation-settings: "opsz" 96, "SOFT" 40, "WONK" 0;
+}
+.libro-title em{
+  font-style: italic;
+  color: var(--terracota);
+  font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
+}
+.libro-specs{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 16px 0;
+  gap: 0;
+}
+.libro-specs > div{
+  border-right: 1px solid var(--rule);
+  padding-right: 12px;
+}
+.libro-specs > div:last-child{ border-right: 0 }
+.libro-specs dt{
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0 0 4px;
+}
+.libro-specs dd{
+  font-family: var(--f-display);
+  font-size: 18px;
+  margin: 0;
+  font-variation-settings: "opsz" 24, "SOFT" 30, "WONK" 0;
+}
+.libro-body p{
+  font-family: var(--f-display);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 46ch;
+  font-weight: 380;
+  font-variation-settings: "opsz" 18, "SOFT" 40, "WONK" 0;
+}
+.libro-pull{
+  font-family: var(--f-display);
+  font-size: 20px;
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--expedition);
+  border-left: 2px solid var(--terracota);
+  padding: 4px 0 4px 18px;
+  margin: 8px 0 0;
+  max-width: 42ch;
+  font-variation-settings: "opsz" 24, "SOFT" 80, "WONK" 1;
+}
+.libro-actions{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px){
+  .libro-inner{ grid-template-columns: 1fr }
+  .libro-photo{ min-height: 420px }
+}
+@media (max-width: 560px){
+  .libro-specs{ grid-template-columns: 1fr; gap: 12px }
+  .libro-specs > div{ border-right: 0; padding-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 10px }
+  .libro-specs > div:last-child{ border-bottom: 0 }
+}
+
+/* ============================================================
+   CHARLAS — full-bleed photo with overlay
+============================================================ */
+.charlas{
+  border-top: 1px solid var(--ink);
+  position: relative;
+  background: var(--ink);
+  min-height: 620px;
+  overflow: hidden;
+}
+.charlas img{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85) contrast(1.05) brightness(0.7);
+}
+.charlas::after{
+  content:""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(26,24,20,0.75) 0%, rgba(26,24,20,0.35) 60%, transparent 100%);
+}
+.charlas-inner{
+  position: relative;
+  z-index: 2;
+  padding: clamp(80px, 10vh, 140px) clamp(24px, 4vw, 80px);
+  color: var(--cream);
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 48px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.charlas .sec-dossier-meta{ color: rgba(232,223,208,0.7) }
+.charlas .sec-dossier-meta .num{ color: var(--terracota) }
+.charlas-content{ max-width: 48ch }
+.charlas h3{
+  font-family: var(--f-display);
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 380;
+  margin: 0 0 20px;
+  font-variation-settings: "opsz" 96, "SOFT" 40, "WONK" 0;
+  color: var(--cream);
+}
+.charlas h3 em{
+  font-style: italic;
+  color: var(--terracota);
+  font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
+}
+.charlas p{
+  font-family: var(--f-display);
+  font-size: 17px;
+  line-height: 1.55;
+  margin: 0 0 28px;
+  color: rgba(232,223,208,0.9);
+  max-width: 42ch;
+  font-variation-settings: "opsz" 18, "SOFT" 40, "WONK" 0;
+}
+.charlas .btn-primary{
+  background: var(--cream);
+  color: var(--ink);
+}
+.charlas .btn-primary:hover{ background: var(--terracota); color: var(--paper) }
+
+@media (max-width: 760px){
+  .charlas-inner{ grid-template-columns: 1fr; gap: 20px }
+  .charlas::after{ background: linear-gradient(180deg, rgba(26,24,20,0.5) 0%, rgba(26,24,20,0.88) 100%) }
+}
+
+/* ============================================================
+   NEWSLETTER
+============================================================ */
+.news{
+  border-top: 1px solid var(--ink);
+  background: var(--cream);
+  padding: clamp(80px, 10vh, 120px) 0;
+}
+.news-inner{
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 80px);
+}
+.news-title{
+  font-family: var(--f-display);
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-weight: 380;
+  margin: 0;
+  font-variation-settings: "opsz" 96, "SOFT" 40, "WONK" 0;
+}
+.news-title em{
+  font-style: italic;
+  color: var(--terracota);
+  font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
+}
+.news-body p{
+  font-family: var(--f-display);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 32px;
+  max-width: 44ch;
+  font-weight: 380;
+  font-variation-settings: "opsz" 18, "SOFT" 40, "WONK" 0;
+}
+.news-form{
+  display: flex;
+  border-bottom: 1px solid var(--ink);
+  align-items: center;
+  gap: 16px;
+  padding-top: 4px;
+}
+.news-form input{
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  font-family: var(--f-display);
+  font-size: 18px;
+  padding: 14px 0;
+  color: var(--ink);
+}
+.news-form input::placeholder{ color: var(--ink-mute); font-style: italic }
+.news-form button{
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 14px 0;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+.news-form button:hover{ color: var(--terracota) }
+.news-form button .arr{
+  width: 22px; height: 1px; background: currentColor; position: relative;
+}
+.news-form button .arr::after{
+  content:""; position: absolute; right: 0; top: -3px;
+  width: 7px; height: 7px; border-top: 1px solid currentColor; border-right: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+.news-fine{
+  margin-top: 14px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+@media (max-width: 760px){
+  .news-inner{ grid-template-columns: 1fr; gap: 32px }
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer{
+  background: var(--ink);
+  color: var(--cream);
+  padding: clamp(64px, 8vh, 100px) 0 32px;
+}
+.foot-wrap{ max-width: 1280px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 80px) }
+.foot-top{
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(232,223,208,0.15);
+}
+.foot-brand{
+  font-family: var(--f-display);
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  font-weight: 380;
+  font-variation-settings: "opsz" 72, "SOFT" 40, "WONK" 0;
+}
+.foot-brand em{
+  font-style: italic;
+  color: var(--terracota);
+  font-variation-settings: "opsz" 72, "SOFT" 100, "WONK" 1;
+}
+.foot-brand-sub{
+  font-family: var(--f-display);
+  font-size: 15px;
+  color: rgba(232,223,208,0.7);
+  line-height: 1.55;
+  max-width: 32ch;
+  font-style: italic;
+  font-variation-settings: "opsz" 18, "SOFT" 80, "WONK" 1;
+}
+.foot-col h5{
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.foot-col ul{ list-style: none; margin: 0; padding: 0 }
+.foot-col li{ margin: 10px 0 }
+.foot-col a{
+  font-family: var(--f-display);
+  font-size: 16px;
+  color: rgba(232,223,208,0.85);
+  transition: color 0.2s;
+  font-weight: 380;
+  font-variation-settings: "opsz" 18, "SOFT" 40, "WONK" 0;
+}
+.foot-col a:hover{ color: var(--terracota) }
+.foot-bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding-top: 24px;
+  flex-wrap: wrap;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(232,223,208,0.5);
+}
+
+@media (max-width: 900px){
+  .foot-top{ grid-template-columns: 1fr 1fr; gap: 32px }
+}
+@media (max-width: 560px){
+  .foot-top{ grid-template-columns: 1fr }
+  .foot-bar{ flex-direction: column; align-items: flex-start }
+}
+
+/* ============================================================
+   Print-edge rule — editorial decoration
+============================================================ */
+.edge-rule{
+  height: 1px;
+  background: var(--ink);
+  margin: 0;
+}
+.frame-tick{
+  position: absolute;
+  width: 1px;
+  background: var(--ink);
+  opacity: 0.4;
+}
+
+/* ============================================================
+   Reveal animation
+============================================================ */
+.reveal{ opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1) }
+.reveal.in{ opacity: 1; transform: none }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     TOPBAR
+============================================================ -->
+<header class="topbar">
+  <div class="topbar-row">
+    <a href="#inicio" class="topbar-brand">Tabaré <em>&amp;</em> Fernanda</a>
+    <div class="topbar-mid">
+      <span>Expedición <strong>URU → ALK</strong></span>
+      <span>Día <strong>3.682</strong></span>
+      <span>&nbsp;</span>
+    </div>
+    <nav class="topbar-nav" aria-label="Principal">
+      <a href="#ruta" data-num="01" data-en="route">ruta</a>
+      <a href="#cronicas" data-num="02" data-en="stories">crónicas</a>
+      <a href="#libro" data-num="03" data-en="book">libro</a>
+      <a href="#charlas" data-num="04" data-en="talks">charlas</a>
+      <button type="button" class="lang-switch" id="langSwitch" aria-label="Cambiar idioma">
+        <span data-lang="es" class="active">ES</span>
+        <span class="sep">/</span>
+        <span data-lang="en">EN</span>
+      </button>
+      <a href="https://www.youtube.com/@tabareyfernanda" target="_blank" rel="noopener" class="topbar-cta" data-en="<span class=&quot;dot&quot;></span> watch">
+        <span class="dot"></span> ver videos
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero" id="inicio">
+  <div class="hero-coord tl" data-en="34° 53′ 05″ S · 56° 10′ 52″ W · Montevideo">34° 53′ 05″ S · 56° 10′ 52″ W · Montevideo</div>
+
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div>
+        <div class="hero-eyebrow">
+          <span class="num">No. 01</span>
+          <span data-en="Expedition dossier">Dossier de expedición</span>
+          <span class="rule"></span>
+          <span data-en="2016 — ongoing">2016 — en curso</span>
+        </div>
+
+        <h1 class="hero-title" data-en="A journey through<br>the Americas,<br><em>by bicycle.</em>">
+          Un viaje por<br>
+          América,<br>
+          <em>en bicicleta.</em>
+        </h1>
+
+        <p class="hero-sub" data-en="I left Uruguay in 2016 with a bike and a fear I was still learning to name. In Meoqui, Chihuahua, Fernanda appeared. <em>Now we ride together to Alaska.</em>">
+          Salí de Uruguay en 2016 con la bici y un miedo que todavía estaba aprendiendo a nombrar. En Meoqui, Chihuahua, apareció Fernanda. <em>Ahora vamos juntos hasta Alaska.</em>
+        </p>
+      </div>
+
+      <div class="hero-sheet">
+        <div class="hero-sheet-title" data-en="Route dossier">Dossier de ruta <span style="flex:1; height:1px; background: var(--rule); display: inline-block; margin-left: auto"></span></div>
+        <dl class="hero-sheet-grid">
+          <div class="hero-sheet-cell">
+            <dt data-en="Distance">Distancia</dt>
+            <dd>30.847 <small>km</small></dd>
+          </div>
+          <div class="hero-sheet-cell">
+            <dt data-en="Countries">Países</dt>
+            <dd>15 <small data-en="of 16">de 16</small></dd>
+          </div>
+          <div class="hero-sheet-cell">
+            <dt data-en="Days on the road">Días en ruta</dt>
+            <dd>3.682</dd>
+          </div>
+          <div class="hero-sheet-cell">
+            <dt data-en="Remaining">Restan</dt>
+            <dd>~7.900 <small>km</small></dd>
+          </div>
+        </dl>
+        <div class="hero-actions">
+          <a href="#libro" class="btn-primary" data-en="Read the book<span class=&quot;arr&quot;></span>">
+            Leer el libro
+            <span class="arr"></span>
+          </a>
+          <a href="#ruta" class="btn-ghost" data-en="see the route">ver la ruta recorrida</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <span class="hero-tag" data-en="<span class=&quot;dot&quot;></span> last signal · brooklyn, ny · 4 h ago"><span class="dot"></span> última señal · brooklyn, ny · hace 4 h</span>
+      <img src="photos/hero-miami-tabare.jpg" alt="Tabaré con la bicicleta cargada de banderas frente al skyline de Miami" loading="eager" decoding="async" />
+      <div class="hero-credit" data-en="Miami, Florida · <strong>day 3,580</strong><br>Photo · Fernanda Lem">
+        Miami, Florida · <strong>día 3.580</strong><br>
+        Foto · Fernanda Lem
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-coord bl" data-en="Altitude 10 m · Bearing N 8°">Altitud 10 msnm · Bearing N 8°</div>
+</section>
+
+<!-- ============================================================
+     MARQUEE — places visited
+============================================================ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Uruguay</span><span>Argentina</span><span>Bolivia</span><span>Perú</span><span>Brasil</span><span>Venezuela</span><span>Colombia</span><span>Panamá</span><span>Costa Rica</span><span>Nicaragua</span><span>Honduras</span><span>Guatemala</span><span>Belice</span><span>México</span><span>Estados Unidos</span><span>→ Canadá</span><span>→ Alaska</span>
+    <span>Uruguay</span><span>Argentina</span><span>Bolivia</span><span>Perú</span><span>Brasil</span><span>Venezuela</span><span>Colombia</span><span>Panamá</span><span>Costa Rica</span><span>Nicaragua</span><span>Honduras</span><span>Guatemala</span><span>Belice</span><span>México</span><span>Estados Unidos</span><span>→ Canadá</span><span>→ Alaska</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     RUTA RECORRIDA (15 países)
+============================================================ -->
+<section class="sec ruta" id="ruta">
+  <div class="wrap-narrow">
+    <div class="sec-dossier">
+      <div class="sec-dossier-meta">
+        <span class="num">01</span>
+        <span data-en="The route<br>traveled">La ruta<br>recorrida</span>
+        <span style="margin-top: 16px">2016 — 2026</span>
+        <span data-en="16 countries · 30,847 km">16 países · 30.847 km</span>
+      </div>
+      <h2 class="sec-dossier-title" data-en="Everything we crossed<br>before <em>getting here.</em>">Todo lo que<br>se cruzó hasta<br><em>llegar acá.</em></h2>
+      <p class="sec-dossier-lede" data-en="Eight years. Fifteen borders. Deserts, cordilleras, jungles, downpours, blackouts, little angels along the road. Tabaré started alone. Fernanda joined in 2022. This is all that’s behind us.">Diez años. Quince fronteras. Desiertos, cordilleras, selvas, lluvias, angelitos en el camino. Tabaré empezó solo. Fernanda se sumó en el 2022. Esto es todo lo que quedó atrás.</p>
+    </div>
+
+    <!-- ============================================================
+         WORLD MAP — Americas, route Uruguay → Alaska
+    ============================================================ -->
+    <div class="ruta-mapwrap">
+      <div class="ruta-mapchrome">
+        <span class="ruta-mapchrome-title">Mapa 01 · <strong id="mapModeTitle">Las Américas</strong> · ruta Uruguay → Alaska</span>
+        <div class="mc-r">
+          <span id="mapModeMeta1">esc · 1 : 38.000.000</span>
+          <span id="mapModeMeta2">proyección bonne</span>
+          <div class="mapmode-toggle" role="tablist" aria-label="Modo de mapa">
+            <button class="mapmode-btn is-active" data-mode="flat" role="tab" aria-selected="true">plano</button>
+            <button class="mapmode-btn" data-mode="globe" role="tab" aria-selected="false">globo</button>
+            <button class="mapmode-btn" data-mode="nautica" role="tab" aria-selected="false">náutico</button>
+            <button class="mapmode-btn" data-mode="bordado" role="tab" aria-selected="false">bordado</button>
+            <button class="mapmode-btn" data-mode="timeline" role="tab" aria-selected="false">tiempo</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ruta-mapcanvas">
+        <svg viewBox="0 0 750 1100" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa de las Américas con la ruta recorrida en bicicleta de Uruguay a Alaska">
+
+          <!-- graticule -->
+          <g class="grat">
+            <line x1="0" y1="150" x2="750" y2="150"/>
+            <line x1="0" y1="300" x2="750" y2="300"/>
+            <line x1="0" y1="450" x2="750" y2="450"/>
+            <line x1="0" y1="600" x2="750" y2="600"/>
+            <line x1="0" y1="750" x2="750" y2="750"/>
+            <line x1="0" y1="900" x2="750" y2="900"/>
+            <line x1="0" y1="1050" x2="750" y2="1050"/>
+            <line x1="125" y1="0" x2="125" y2="1100"/>
+            <line x1="250" y1="0" x2="250" y2="1100"/>
+            <line x1="375" y1="0" x2="375" y2="1100"/>
+            <line x1="500" y1="0" x2="500" y2="1100"/>
+            <line x1="625" y1="0" x2="625" y2="1100"/>
+          </g>
+
+          <!-- ocean labels -->
+          <text class="ocean" x="40" y="560" transform="rotate(-90 40 560)">PACÍFICO</text>
+          <text class="ocean" x="700" y="850" transform="rotate(-90 700 850)">ATLÁNTICO</text>
+
+          <!-- Continent landmass: Americas (single sweep clockwise) -->
+          <path class="land" d="
+            M 90,82 L 150,68 L 240,60 L 340,58 L 440,65 L 520,80
+            L 548,108 L 540,150 L 505,178 L 478,162
+            L 478,192 L 515,204
+            L 560,188 L 608,168 L 648,152
+            L 665,162 L 660,198
+            L 645,235 L 630,280 L 615,322 L 598,365 L 585,400
+            L 595,425 L 608,450 L 612,470 L 602,478 L 586,470 L 572,448 L 562,420
+            L 548,390 L 515,375 L 475,365 L 432,362 L 390,368 L 352,382 L 320,402
+            L 305,428 L 300,452 L 308,478
+            L 335,495 L 362,498 L 380,488
+            L 370,512 L 345,520 L 318,528
+            L 300,545 L 286,565 L 275,585 L 266,605
+            L 258,626 L 252,648
+            L 276,660 L 304,668
+            L 334,678 L 366,686
+            L 396,698 L 428,710
+            L 462,724 L 498,740
+            L 530,765 L 555,798 L 572,832
+            L 582,872 L 584,908
+            L 575,948 L 555,988
+            L 530,1018 L 510,1035
+            L 495,1052 L 482,1068 L 472,1080
+            L 466,1086
+            L 458,1070 L 450,1045 L 443,1015
+            L 436,975 L 430,928 L 423,880 L 416,832 L 410,785 L 402,740
+            L 392,702 L 378,664 L 362,632
+            L 344,610 L 326,592
+            L 310,574 L 294,556 L 282,540
+            L 268,520 L 252,498 L 238,475 L 222,452
+            L 208,430 L 195,408 L 183,385 L 172,360
+            L 162,332 L 152,302 L 142,272 L 132,242
+            L 122,210 L 114,178 L 108,148 L 102,118
+            L 94,92 L 90,82 Z
+          "/>
+
+          <!-- Alaska peninsula + Aleutians -->
+          <path class="land" d="M 90,90 L 62,80 L 30,95 L 15,115 L 22,135 L 55,125 L 82,115 Z"/>
+          <circle class="land" cx="8" cy="140" r="2.2"/>
+          <circle class="land" cx="2" cy="150" r="1.8"/>
+
+          <!-- Baja California peninsula -->
+          <path class="land" d="
+            M 185,390 L 178,425 L 172,465 L 166,505 L 160,540
+            L 168,548 L 178,515 L 188,478 L 196,438 L 202,400 Z
+          "/>
+
+          <!-- Great Lakes hint (tiny notch) -->
+          <ellipse class="lake" cx="488" cy="200" rx="22" ry="6" transform="rotate(-10 488 200)"/>
+
+          <!-- Caribbean islands -->
+          <ellipse class="land" cx="432" cy="440" rx="34" ry="7" transform="rotate(-12 432 440)"/>
+          <ellipse class="land" cx="512" cy="462" rx="18" ry="6" transform="rotate(-10 512 462)"/>
+          <ellipse class="land" cx="548" cy="470" rx="8" ry="4"/>
+
+          <!-- Newfoundland -->
+          <ellipse class="land" cx="682" cy="180" rx="14" ry="6" transform="rotate(22 682 180)"/>
+
+          <!-- Tierra del Fuego -->
+          <ellipse class="land" cx="456" cy="1092" rx="10" ry="4" transform="rotate(-18 456 1092)"/>
+
+          <!-- Galápagos hint -->
+          <circle class="land" cx="272" cy="648" r="3"/>
+          <circle class="land" cx="278" cy="654" r="2"/>
+
+          <!-- ============================================
+               ROUTE — solid line through 15 countries (1–15)
+          ============================================ -->
+          <path id="rutaPath" class="route" d="
+            M 540,1000
+            Q 515,995 490,988 L 468,980
+            Q 455,935 450,895 L 435,830
+            Q 420,800 408,778 L 395,755
+            Q 440,805 475,830 L 500,850
+            Q 470,790 440,750 Q 420,725 395,710 L 370,678
+            Q 340,665 310,655 L 290,648
+            Q 278,625 268,610 L 260,598
+            L 278,562 L 295,540 L 310,518 L 335,498 L 360,488
+            Q 320,460 290,435 L 260,410
+            Q 380,395 500,392 L 580,400
+          "/>
+
+          <!-- ROUTE FUTURE — Brooklyn → Alaska (dashed) -->
+          <path class="route-future" d="
+            M 610,260
+            Q 480,225 350,195 Q 220,165 130,140 Q 90,128 50,115
+          "/>
+
+          <!-- Traveling dot — bicycle following the route (world in movement) -->
+          <g class="travel">
+            <circle class="travel-halo" r="7">
+              <animateMotion dur="14s" repeatCount="indefinite" rotate="auto" begin="5.6s">
+                <mpath href="#rutaPath"/>
+              </animateMotion>
+              <animate attributeName="r" values="5;9;5" dur="1.4s" repeatCount="indefinite" begin="5.6s"/>
+              <animate attributeName="opacity" values="0.5;0.1;0.5" dur="1.4s" repeatCount="indefinite" begin="5.6s"/>
+            </circle>
+            <circle class="travel-dot" r="3">
+              <animateMotion dur="14s" repeatCount="indefinite" rotate="auto" begin="5.6s">
+                <mpath href="#rutaPath"/>
+              </animateMotion>
+            </circle>
+          </g>
+
+          <!-- Rotating compass/parallel rings (decorative — world in movement) -->
+          <g class="compass-ring">
+            <circle cx="375" cy="550" r="260" fill="none"/>
+            <circle cx="375" cy="550" r="340" fill="none" opacity="0.5"/>
+            <animateTransform attributeName="transform" type="rotate" from="0 375 550" to="360 375 550" dur="120s" repeatCount="indefinite"/>
+          </g>
+
+          <!-- ============================================
+               STOPS — 15 numbered country markers
+          ============================================ -->
+          <g class="stops">
+            <!-- 01 Uruguay -->
+            <g class="marker-stop" data-country="uruguay" transform="translate(540,1000)">
+              <circle r="11"/>
+              <text>01</text>
+            </g>
+            <!-- 02 Argentina -->
+            <g class="marker-stop" data-country="argentina" transform="translate(468,980)">
+              <circle r="11"/>
+              <text>02</text>
+            </g>
+            <!-- 03 Bolivia -->
+            <g class="marker-stop" data-country="bolivia" transform="translate(435,830)">
+              <circle r="11"/>
+              <text>03</text>
+            </g>
+            <!-- 04 Perú -->
+            <g class="marker-stop" data-country="peru" transform="translate(395,755)">
+              <circle r="11"/>
+              <text>04</text>
+            </g>
+            <!-- 05 Brasil -->
+            <g class="marker-stop" data-country="brasil" transform="translate(500,850)">
+              <circle r="11"/>
+              <text>05</text>
+            </g>
+            <!-- 06 Venezuela -->
+            <g class="marker-stop" data-country="venezuela" transform="translate(370,678)">
+              <circle r="11"/>
+              <text>06</text>
+            </g>
+            <!-- 07 Colombia -->
+            <g class="marker-stop" data-country="colombia" transform="translate(290,648)">
+              <circle r="11"/>
+              <text>07</text>
+            </g>
+            <!-- 08 Panamá -->
+            <g class="marker-stop" data-country="panama" transform="translate(260,598)">
+              <circle r="11"/>
+              <text>08</text>
+            </g>
+            <!-- 09 Costa Rica -->
+            <g class="marker-stop" data-country="costa-rica" transform="translate(278,562)">
+              <circle r="11"/>
+              <text>09</text>
+            </g>
+            <!-- 10 Nicaragua -->
+            <g class="marker-stop" data-country="nicaragua" transform="translate(295,540)">
+              <circle r="11"/>
+              <text>10</text>
+            </g>
+            <!-- 11 Honduras -->
+            <g class="marker-stop" data-country="honduras" transform="translate(310,518)">
+              <circle r="11"/>
+              <text>11</text>
+            </g>
+            <!-- 12 Guatemala -->
+            <g class="marker-stop" data-country="guatemala" transform="translate(335,498)">
+              <circle r="11"/>
+              <text>12</text>
+            </g>
+            <!-- 13 Belice -->
+            <g class="marker-stop" data-country="belice" transform="translate(360,488)">
+              <circle r="11"/>
+              <text>13</text>
+            </g>
+            <!-- 14 México -->
+            <g class="marker-stop" data-country="mexico" transform="translate(260,410)">
+              <circle r="11"/>
+              <text>14</text>
+            </g>
+            <!-- 15 USA (start east coast: Miami) -->
+            <g class="marker-stop" data-country="usa" transform="translate(580,400)">
+              <circle r="11"/>
+              <text>15</text>
+            </g>
+            <!-- 16 Alaska — goal, dashed -->
+            <g class="marker-stop goal" data-country="alaska" transform="translate(50,115)">
+              <circle r="11"/>
+              <text>16</text>
+            </g>
+          </g>
+
+          <!-- City labels (mute) -->
+          <text class="citylabel" x="554" y="1016">Montevideo</text>
+          <text class="citylabel" x="444" y="820">Salar Uyuni</text>
+          <text class="citylabel" x="350" y="770">Cusco</text>
+          <text class="citylabel" x="258" y="642">Bogotá</text>
+          <text class="citylabel" x="272" y="402">Meoqui · CHIH</text>
+          <text class="citylabel" x="596" y="418">Miami</text>
+          <text class="citylabel" x="66" y="132">Anchorage</text>
+
+          <!-- "AHORA" pin — Brooklyn, NY -->
+          <g class="marker-now" transform="translate(610,260)">
+            <circle class="pulse" r="6"/>
+            <circle class="pulse" r="6" style="animation-delay:1.2s"/>
+            <circle class="ring" r="9"/>
+            <circle class="core" r="3.5"/>
+          </g>
+          <line class="nowlabel-line" x1="618" y1="252" x2="680" y2="218"/>
+          <text class="nowlabel" x="684" y="218">AHORA · BROOKLYN, NY</text>
+
+        </svg>
+      </div>
+
+      <!-- 3D Globe (lazy-loaded on toggle) -->
+      <div class="ruta-globecanvas" id="rutaGlobeCanvas" aria-hidden="true">
+        <div class="ruta-globe-chrome-l">
+          <span class="lbl-mono">VISTA · 3D</span>
+          <span class="lbl-mono" id="globeStatus">INICIALIZANDO…</span>
+        </div>
+        <div class="ruta-globe-chrome-r">
+          <span class="lbl-mono">DRAG · ROTAR</span>
+          <span class="lbl-mono">SCROLL · ZOOM</span>
+          <span class="lbl-mono">CLICK · CAPÍTULO</span>
+        </div>
+        <div class="ruta-globe-host" id="rutaGlobeHost"></div>
+        <div class="ruta-globe-loading" id="globeLoading">
+          <span class="ruta-globe-loading-dot"></span>
+          <span class="ruta-globe-loading-dot"></span>
+          <span class="ruta-globe-loading-dot"></span>
+        </div>
+      </div>
+
+      <div class="ruta-maplegend">
+        <span class="lg"><span class="lg-line"></span> ruta recorrida · 30.847 km</span>
+        <span class="lg"><span class="lg-line dash"></span> tramo pendiente · ~9.000 km</span>
+        <span class="lg"><span class="lg-dot"></span> última señal · 4 h</span>
+        <span>16 paradas · 1 destino</span>
+      </div>
+    </div>
+
+    <div class="ruta-inner">
+      <ol class="ruta-list" id="rutaList">
+        <li class="ruta-country active" data-country="uruguay" data-quote="Salí de casa sin saber a dónde iba. Solo que no aguantaba más la rutina." data-km="640" data-dias="28" data-llegada="mar 2016">
+          <span class="num">01 ·</span>
+          <span class="ruta-country-name">Uruguay</span>
+          <span class="ruta-country-year mono">2016</span>
+          <span class="ruta-country-km mono">640 km</span>
+        </li>
+        <li class="ruta-country" data-country="argentina" data-quote="Cuando los de camping cerraron uno por uno, entendí que las plantaciones no eran mi problema." data-km="3200" data-dias="94" data-llegada="abr 2016">
+          <span class="num">02 ·</span>
+          <span class="ruta-country-name">Argentina</span>
+          <span class="ruta-country-year mono">2016</span>
+          <span class="ruta-country-km mono">3.200 km</span>
+        </li>
+        <li class="ruta-country" data-country="bolivia" data-quote="En el Salar de Uyuni aprendí que el equilibrio no es quedarse quieto, es seguir pedaleando." data-km="1450" data-dias="42" data-llegada="sep 2016">
+          <span class="num">03 ·</span>
+          <span class="ruta-country-name">Bolivia</span>
+          <span class="ruta-country-year mono">2016</span>
+          <span class="ruta-country-km mono">1.450 km</span>
+        </li>
+        <li class="ruta-country" data-country="peru" data-quote="Los niños de los Andes me regalaban papa asada. Yo les devolvía fotos mal tomadas. Era un buen trato." data-km="1800" data-dias="54" data-llegada="nov 2016">
+          <span class="num">04 ·</span>
+          <span class="ruta-country-name">Perú</span>
+          <span class="ruta-country-year mono">2016</span>
+          <span class="ruta-country-km mono">1.800 km</span>
+        </li>
+        <li class="ruta-country" data-country="brasil" data-quote="Brasil me enseñó a bailar con extraños en la calle. Y a dormir en iglesias sin pedir permiso." data-km="1200" data-dias="38" data-llegada="feb 2017">
+          <span class="num">05 ·</span>
+          <span class="ruta-country-name">Brasil</span>
+          <span class="ruta-country-year mono">2017</span>
+          <span class="ruta-country-km mono">1.200 km</span>
+        </li>
+        <li class="ruta-country" data-country="venezuela" data-quote="En Venezuela me decían &quot;Dios te bendiga&quot; al menos diez veces al día. Un día dejé de decir que no creía." data-km="1100" data-dias="36" data-llegada="may 2017">
+          <span class="num">06 ·</span>
+          <span class="ruta-country-name">Venezuela</span>
+          <span class="ruta-country-year mono">2017</span>
+          <span class="ruta-country-km mono">1.100 km</span>
+        </li>
+        <li class="ruta-country" data-country="colombia" data-quote="Colombia tiene un verde que no se deja fotografiar. Lo pedaleás y se queda dentro, es otra cosa." data-km="1500" data-dias="48" data-llegada="ago 2017">
+          <span class="num">07 ·</span>
+          <span class="ruta-country-name">Colombia</span>
+          <span class="ruta-country-year mono">2017</span>
+          <span class="ruta-country-km mono">1.500 km</span>
+        </li>
+        <li class="ruta-country" data-country="panama" data-quote="Crucé el tapón del Darién en barco con dos pescadores y un perro. El perro tenía nombre. Los pescadores no." data-km="600" data-dias="22" data-llegada="nov 2017">
+          <span class="num">08 ·</span>
+          <span class="ruta-country-name">Panamá</span>
+          <span class="ruta-country-year mono">2017</span>
+          <span class="ruta-country-km mono">600 km</span>
+        </li>
+        <li class="ruta-country" data-country="costa-rica" data-quote="Pura vida no es un saludo, es un modo de pedalear cuando llueve durante seis horas seguidas." data-km="750" data-dias="28" data-llegada="ene 2018">
+          <span class="num">09 ·</span>
+          <span class="ruta-country-name">Costa Rica</span>
+          <span class="ruta-country-year mono">2018</span>
+          <span class="ruta-country-km mono">750 km</span>
+        </li>
+        <li class="ruta-country" data-country="nicaragua" data-quote="Los perros de Nicaragua se hicieron mi escolta durante un tramo entero. Nunca entendí por qué." data-km="520" data-dias="18" data-llegada="mar 2018">
+          <span class="num">10 ·</span>
+          <span class="ruta-country-name">Nicaragua</span>
+          <span class="ruta-country-year mono">2018</span>
+          <span class="ruta-country-km mono">520 km</span>
+        </li>
+        <li class="ruta-country" data-country="honduras" data-quote="Honduras fue rápido, breve, lleno de camioneros que me invitaban al asiento del pasajero." data-km="380" data-dias="14" data-llegada="abr 2018">
+          <span class="num">11 ·</span>
+          <span class="ruta-country-name">Honduras</span>
+          <span class="ruta-country-year mono">2018</span>
+          <span class="ruta-country-km mono">380 km</span>
+        </li>
+        <li class="ruta-country" data-country="guatemala" data-quote="En Guatemala me llamaban ladrón. Después entendí por qué: el tren me había vuelto uno más." data-km="560" data-dias="20" data-llegada="jun 2018">
+          <span class="num">12 ·</span>
+          <span class="ruta-country-name">Guatemala</span>
+          <span class="ruta-country-year mono">2018</span>
+          <span class="ruta-country-km mono">560 km</span>
+        </li>
+        <li class="ruta-country" data-country="belice" data-quote="El oficial nos preguntó si éramos casados. Dijimos que sí. No lo éramos." data-km="220" data-dias="10" data-llegada="jul 2018">
+          <span class="num">13 ·</span>
+          <span class="ruta-country-name">Belice</span>
+          <span class="ruta-country-year mono">2018</span>
+          <span class="ruta-country-km mono">220 km</span>
+        </li>
+        <li class="ruta-country" data-country="mexico" data-quote="En Meoqui apareció Fernanda. Dejé de ir al norte. Empezamos a ir a todas partes." data-km="4800" data-dias="520" data-llegada="ago 2018">
+          <span class="num">14 ·</span>
+          <span class="ruta-country-name">México</span>
+          <span class="ruta-country-year mono">2018 — 2023</span>
+          <span class="ruta-country-km mono">4.800 km</span>
+        </li>
+        <li class="ruta-country" data-country="usa" data-quote="Miami es la primera costa de Estados Unidos. Llevábamos 15 banderas en la bici. No sobraba ninguna." data-km="3027" data-dias="210" data-llegada="ene 2024">
+          <span class="num">15 ·</span>
+          <span class="ruta-country-name">Estados Unidos <em>— en curso</em></span>
+          <span class="ruta-country-year mono">2024 —</span>
+          <span class="ruta-country-km mono">3.027 km</span>
+        </li>
+      </ol>
+
+      <aside class="ruta-snapshot" id="rutaSnap">
+        <div class="ruta-snap-head">
+          <strong id="snapNum">01 · cap. inicial</strong>
+          <span id="snapYear">2016</span>
+        </div>
+        <h3 class="ruta-snap-country" id="snapCountry">Uruguay</h3>
+        <p class="ruta-snap-quote" id="snapQuote">Salí de casa sin saber a dónde iba. Solo que no aguantaba más la rutina.</p>
+        <dl class="ruta-snap-data">
+          <div>
+            <dt>Distancia</dt>
+            <dd id="snapKm">640 <small style="font-family:var(--f-mono);font-size:10px;color:var(--ink-mute)">km</small></dd>
+          </div>
+          <div>
+            <dt>Días</dt>
+            <dd id="snapDias">28</dd>
+          </div>
+          <div>
+            <dt>Salida</dt>
+            <dd id="snapLleg" style="font-size:14px">mar 2016</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VIDEO — un tramo en cámara
+============================================================ -->
+<section class="video-sec" id="video">
+  <div class="wrap-narrow">
+    <div class="sec-dossier">
+      <div class="sec-dossier-meta">
+        <span class="num">02</span>
+        <span>Un rato<br>de ruta</span>
+        <span style="margin-top: 16px">filmado · 2024–2025</span>
+      </div>
+      <h2 class="sec-dossier-title">Sumate a un tramo,<br><em>en cámara.</em></h2>
+      <p class="sec-dossier-lede">No hay drone caro ni edición prolija. Cámara en el manubrio, viento de fondo, y la voz del que pedalea contando lo que va viendo. Diez minutos para entender por qué seguimos.</p>
+    </div>
+
+    <div class="video-frame">
+      <div class="video-frame-bar">
+        <span class="vfb-l"><span class="vfb-rec"></span> rec · <strong>tabaré &amp; fernanda</strong></span>
+        <span>16:9 · 4K · estéreo</span>
+      </div>
+      <div class="video-frame-player">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/oFC5_2bLp2w?rel=0&modestbranding=1"
+          title="Tabaré &amp; Fernanda — Un tramo de ruta"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
+      <div class="video-frame-foot">
+        <p class="video-frame-cap">"Nadie pedalea solo de verdad. Atrás siempre vienen todos los que te dejaron seguir."</p>
+        <div class="video-frame-byline">
+          <strong>Tabaré Alonso</strong><br>
+          dirección · cámara · narración<br>
+          Fernanda Lem · producción
+        </div>
+      </div>
+    </div>
+
+    <div class="video-sec-cta">
+      <a href="https://www.youtube.com/watch?v=oFC5_2bLp2w" target="_blank" rel="noopener" class="ytlink">
+        ver en youtube · suscribirse
+        <span style="display:inline-block;transform:translateY(-1px)">↗</span>
+      </a>
+      <span class="ytmeta">canal · <strong>@tabareyfernanda</strong> · capítulos nuevos cada quince</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CRÓNICAS
+============================================================ -->
+<section class="sec cronicas" id="cronicas">
+  <div class="wrap-narrow">
+    <div class="sec-dossier">
+      <div class="sec-dossier-meta">
+        <span class="num">03</span>
+        <span>Crónicas<br>de la ruta</span>
+        <span style="margin-top: 16px">últimas 3 publicadas</span>
+        <a href="#" style="margin-top: 8px; color: var(--terracota)">ver todas →</a>
+      </div>
+      <h2 class="sec-dossier-title">Historias que<br>la ruta deja<br><em>contar.</em></h2>
+      <p class="sec-dossier-lede">Capítulos sueltos, escritos en pueblitos, estaciones de servicio, carpas, departamentos prestados. Algunos están en el libro. Otros todavía no. Acá van los últimos tres.</p>
+    </div>
+
+    <div class="cronicas-grid">
+      <article class="cr">
+        <div class="cr-photo">
+          <div class="cr-photo-ph">[ foto — noche<br>potosí · bolivia ]</div>
+          <span class="cr-tag">crónica</span>
+        </div>
+        <div class="cr-meta">
+          <span class="cr-country">BOL</span>
+          <span>potosí · día 487 · 7.120 km</span>
+        </div>
+        <h3 class="cr-title">Potosí, cuatro mil metros, sin luz.</h3>
+        <p class="cr-lede">El GPS había mentido dos veces. Empujábamos la bici por una cuesta que no terminaba. Fernanda se sentó en la cuneta y dijo: acá. A veces el camino te enseña a bajarte y agradecer.</p>
+        <span class="cr-read">Leer · 12 min <span style="flex:1; height:1px; background: currentColor; opacity:0.3"></span> 24.03</span>
+      </article>
+
+      <article class="cr">
+        <div class="cr-photo">
+          <div class="cr-photo-ph">[ foto — bici + antena<br>atacama · chile ]</div>
+          <span class="cr-tag">equipo</span>
+        </div>
+        <div class="cr-meta">
+          <span class="cr-country">CHI</span>
+          <span>atacama · día 812 · 11.430 km</span>
+        </div>
+        <h3 class="cr-title">Por qué llevamos antena satelital.</h3>
+        <p class="cr-lede">Pesa. Se ríen. Pero cuando se va el sol en Atacama y no hay nadie en 200 km, la prendo y le escribo a mi madre. Ella duerme tranquila. Casi nunca se trata de internet.</p>
+        <span class="cr-read">Leer · 8 min <span style="flex:1; height:1px; background: currentColor; opacity:0.3"></span> 18.03</span>
+      </article>
+
+      <article class="cr">
+        <div class="cr-photo">
+          <div class="cr-photo-ph">[ foto — amanecer<br>frontera · belice ]</div>
+          <span class="cr-tag">ensayo</span>
+        </div>
+        <div class="cr-meta">
+          <span class="cr-country">BLZ</span>
+          <span>corozal · día 1.902 · 19.604 km</span>
+        </div>
+        <h3 class="cr-title">Frontera de Belice.<br>Un &ldquo;sí&rdquo; que todavía estábamos aprendiendo.</h3>
+        <p class="cr-lede">El oficial nos preguntó si éramos casados. Dijimos que sí. Todavía no lo éramos. A veces un sello en un pasaporte te obliga a nombrar en voz alta una verdad que recién estabas empezando a cargar.</p>
+        <span class="cr-read">Leer · 15 min <span style="flex:1; height:1px; background: currentColor; opacity:0.3"></span> 11.03</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PULL QUOTE — editorial
+============================================================ -->
+<section class="pull-sec">
+  <div class="wrap-narrow">
+    <blockquote class="pull-quote">
+      El miedo es un <em>virus.</em> Se contagia rápido.
+    </blockquote>
+    <div class="pull-attrib">
+      <span>Tabaré Alonso</span>
+      <span class="dot">·</span>
+      <span>Rutas del corazón, 2024</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LIBRO
+============================================================ -->
+<section class="sec libro" id="libro">
+  <div class="wrap-narrow">
+    <div class="sec-dossier">
+      <div class="sec-dossier-meta">
+        <span class="num">04</span>
+        <span>El primer<br>libro</span>
+        <span style="margin-top: 16px">2ª edición</span>
+        <span>agosto 2024</span>
+      </div>
+      <h2 class="sec-dossier-title" data-en="191 pages<br>of road,<br><em>in two voices.</em>">191 páginas<br>de ruta,<br><em>a dos voces.</em></h2>
+      <p class="sec-dossier-lede" data-en="Written in Spanish and English, with chapters narrated in first person by both of us. Some carry a QR code: scan it and you hear us reading it in our own voice, with the wind behind.">Escrito en español e inglés, con capítulos narrados en primera persona por los dos. Algunos llevan código QR: si lo escaneás, nos escuchás leyéndolo con la voz original, con el viento atrás.</p>
+    </div>
+
+    <div class="libro-inner">
+      <div class="libro-photo">
+        <img class="bookcover" src="photos/libro-portada.jpg" alt="Portada de Heart Routes / Rutas del Corazón — Tabaré Alonso y Fernanda Lem con sus bicicletas frente al muro fronterizo" loading="lazy" />
+        <div class="libro-photo-frame">Heart Routes · ISBN 979-8-3456-8217-4</div>
+        <div class="libro-photo-caption">
+          <span><strong>Heart Routes</strong><br>Una travesía en bicicleta · ES / EN</span>
+          <span>© Fernanda Lem</span>
+        </div>
+      </div>
+      <div class="libro-body">
+        <span class="libro-chip">Rutas del corazón / A Journey Across America</span>
+        <h3 class="libro-title">Rutas <em>del</em><br>corazón.</h3>
+        <dl class="libro-specs">
+          <div>
+            <dt>Páginas</dt>
+            <dd>191</dd>
+          </div>
+          <div>
+            <dt>Idioma</dt>
+            <dd>ES / EN</dd>
+          </div>
+          <div>
+            <dt>Edición</dt>
+            <dd>2ª · 2024</dd>
+          </div>
+        </dl>
+        <p>Salí de Uruguay en 2016 con la bici y un miedo que todavía estaba aprendiendo a nombrar. Crucé quince países pedaleando solo hasta que, en Meoqui, Chihuahua, apareció Fernanda. La ruta dejó de ser mía. Este libro es lo que quedó escrito en el camino.</p>
+        <blockquote class="libro-pull">
+          Dos pequeñas luces, una sureña y otra norteña, se encontraron a escasos metros del Río San Pedro. Tuvieron su primera cita bajo un puente.
+        </blockquote>
+        <div class="libro-actions">
+          <a href="#" class="btn-primary">
+            Conseguí un ejemplar
+            <span class="arr"></span>
+          </a>
+          <a href="#" class="btn-ghost">escuchar un capítulo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHARLAS
+============================================================ -->
+<section class="charlas" id="charlas">
+  <img src="photos/tabare-bosque.jpg" alt="Tabaré entre pinos con mate" loading="lazy" />
+  <div class="charlas-inner">
+    <div class="sec-dossier-meta">
+      <span class="num">05</span>
+      <span>Charlas &amp;<br>escuelas</span>
+      <span style="margin-top: 16px">colegios, empresas, festivales</span>
+      <span>presencial &amp; online</span>
+    </div>
+    <div class="charlas-content">
+      <h3>También<br>damos charlas,<br><em>con barro.</em></h3>
+      <p>Sobre sueños, miedo, y lo que enseña la carretera cuando uno se deja enseñar. Con fotos reales de Fernanda, audio grabado en ruta, y sin filminas prolijas de PowerPoint. Para colegios, empresas, ONGs, festivales y universidades.</p>
+      <a href="#" class="btn-primary">
+        Solicitar una charla
+        <span class="arr"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWSLETTER
+============================================================ -->
+<section class="news" id="newsletter">
+  <div class="news-inner">
+    <div>
+      <h3 class="news-title">Te escribimos<br><em>cuando la ruta</em><br>da algo para<br>contar.</h3>
+    </div>
+    <div class="news-body">
+      <p>Sin frecuencia fija, sin spam, sin afiliados. Cuando pasa algo que merece escribirse — una crónica nueva, un fragmento del próximo libro, una foto de Fernanda que no subimos a ningún lado — llega al correo. Nada más.</p>
+      <form class="news-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('.done').style.opacity=1; setTimeout(()=>this.querySelector('.done').style.opacity=0, 2400);">
+        <input type="email" placeholder="tu correo" aria-label="Correo electrónico" required />
+        <button type="submit">suscribirme <span class="arr"></span></button>
+      </form>
+      <span class="done mono" style="opacity:0;transition:opacity .3s;color:var(--terracota);font-size:10px;display:block;margin-top:10px">recibido, gracias</span>
+      <div class="news-fine">sin listas compradas · cancelás cuando quieras</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer id="contacto">
+  <div class="foot-wrap">
+    <div class="foot-top">
+      <div>
+        <h4 class="foot-brand">Tabaré <em>&amp;</em><br>Fernanda.</h4>
+        <p class="foot-brand-sub">Dos soñadores a pedal, buscando la ruta que no está en el mapa.</p>
+      </div>
+      <div class="foot-col">
+        <h5>expedición</h5>
+        <ul>
+          <li><a href="#ruta">La ruta recorrida</a></li>
+          <li><a href="#cronicas">Crónicas</a></li>
+          <li><a href="#libro">El libro</a></li>
+          <li><a href="#charlas">Charlas</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>encontranos</h5>
+        <ul>
+          <li><a href="https://www.youtube.com/@tabareyfernanda" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Spotify</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>contacto</h5>
+        <ul>
+          <li><a href="mailto:hola@tabarealonso.com">hola@tabarealonso.com</a></li>
+          <li><a href="#">Prensa</a></li>
+          <li><a href="#">Colaboraciones</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <span>© 2024 Tabaré Alonso &amp; Fernanda Lem · Todos los derechos reservados</span>
+      <span>Diseño editorial · hecho en ruta</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ------- Ruta map — path length + trigger animation in-view -------
+(function(){
+  const path = document.getElementById('rutaPath');
+  if (!path) return;
+  // Set dasharray to actual path length so the draw-on is precise
+  try {
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    // override CSS animation to use a computed keyframe via JS
+    path.style.animation = 'none';
+    path.getBoundingClientRect(); // reflow
+  } catch(e){}
+
+  // Trigger everything when the map scrolls into view
+  const wrap = document.querySelector('.ruta-mapwrap');
+  if (!wrap) return;
+  let played = false;
+  const run = () => {
+    if (played) return;
+    played = true;
+    // Kick the route drawing
+    path.style.transition = 'stroke-dashoffset 5.5s cubic-bezier(.22,.61,.36,1)';
+    requestAnimationFrame(() => { path.style.strokeDashoffset = '0'; });
+    // Add a class that lets CSS re-trigger marker animations via animation-play-state
+    wrap.classList.add('is-playing');
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) run(); });
+  }, { threshold: 0.15 });
+  io.observe(wrap);
+})();
+
+// ------- 3D Globe (globe.gl) -------
+(function(){
+  const wrap = document.querySelector('.ruta-mapwrap');
+  const host = document.getElementById('rutaGlobeHost');
+  const loading = document.getElementById('globeLoading');
+  const statusEl = document.getElementById('globeStatus');
+  const titleEl = document.getElementById('mapModeTitle');
+  const meta1 = document.getElementById('mapModeMeta1');
+  const meta2 = document.getElementById('mapModeMeta2');
+  const btns = document.querySelectorAll('.mapmode-btn');
+  if (!wrap || !host) return;
+
+  // Simplified route — only key countries rendered as pins on the globe
+  const STOPS = [
+    { country:'uruguay',  name:'Uruguay',  city:'Montevideo',   lat:-34.90, lng:-56.19, year:2016, n:'01' },
+    { country:'panama',   name:'Panamá',   city:'Ciudad de Panamá', lat:8.98, lng:-79.52, year:2018, n:'07' },
+    { country:'mexico',   name:'México',   city:'Meoqui, Chih.', lat:28.26, lng:-105.48, year:2021, n:'12' },
+    { country:'usa-nyc',  name:'USA',      city:'Brooklyn, NY', lat:40.68, lng:-73.94, year:2024, n:'14', current:true },
+    { country:'canada',   name:'Canadá',   city:'por cruzar',    lat:49.28, lng:-123.12,year:2025, n:'15', future:true },
+    { country:'alaska',   name:'Alaska',   city:'Anchorage',     lat:61.22, lng:-149.90,year:2026, n:'16', future:true },
+  ];
+
+  // Full country coordinates — used for camera-focus when user clicks countries in the list
+  // that aren't rendered as globe pins (so the globe still flies there).
+  const COORDS = {
+    uruguay:     { lat:-34.90, lng:-56.19 },
+    argentina:   { lat:-34.61, lng:-58.38 },
+    bolivia:     { lat:-20.13, lng:-67.49 },
+    peru:        { lat:-13.53, lng:-71.97 },
+    ecuador:     { lat:-0.18,  lng:-78.47 },
+    colombia:    { lat:4.71,   lng:-74.07 },
+    panama:      { lat:8.98,   lng:-79.52 },
+    costarica:   { lat:9.93,   lng:-84.08 },
+    nicaragua:   { lat:12.11,  lng:-86.27 },
+    honduras:    { lat:14.07,  lng:-87.19 },
+    guatemala:   { lat:14.56,  lng:-90.73 },
+    mexico:      { lat:28.26,  lng:-105.48 },
+    'usa-miami': { lat:25.77,  lng:-80.19 },
+    'usa-nyc':   { lat:40.68,  lng:-73.94 },
+    canada:      { lat:49.28,  lng:-123.12 },
+    alaska:      { lat:61.22,  lng:-149.90 },
+  };
+
+  // Real overland waypoints — Montevideo → Brooklyn, tracing roads/terrain.
+  // Dense enough to look like a ground path when bent to globe curvature.
+  const PAST_ROUTE = [
+    // Uruguay
+    [-34.90, -56.19], [-34.47, -57.84], [-33.51, -58.31], [-32.32, -58.08],
+    // Argentina (litoral → NW)
+    [-31.74, -60.52], [-31.42, -64.18], [-28.47, -65.80], [-26.83, -65.22], [-24.18, -65.30],
+    // Bolivia (altiplano)
+    [-22.08, -65.59], [-20.46, -66.83], [-17.95, -67.11], [-16.49, -68.12],
+    // Peru (altiplano → costa → norte)
+    [-15.84, -70.02], [-13.53, -71.97], [-13.15, -74.22], [-12.04, -77.03],
+    [-10.70, -77.80], [-8.11, -79.02], [-5.19, -80.63], [-3.75, -80.70],
+    // Ecuador
+    [-2.17, -79.92], [-1.67, -78.65], [-0.18, -78.47], [0.35, -78.12],
+    // Colombia (andes → caribe)
+    [1.21, -77.28], [2.44, -76.61], [3.43, -76.52], [4.71, -74.07],
+    [6.24, -75.58], [8.75, -75.88], [10.39, -75.51],
+    // Darién Gap crossing (boat) — curve out to sea slightly
+    [9.56, -77.95], [9.36, -79.90],
+    // Panama
+    [8.98, -79.52], [8.44, -82.43],
+    // Costa Rica
+    [9.38, -83.70], [9.93, -84.08], [10.63, -85.44],
+    // Nicaragua
+    [11.26, -85.87], [12.11, -86.27], [12.93, -85.95],
+    // Honduras
+    [13.29, -87.19], [14.07, -87.19], [14.63, -87.48],
+    // Guatemala
+    [14.56, -90.73], [14.63, -90.51], [14.91, -91.52],
+    // Mexico (sur → centro → norte)
+    [14.91, -92.26], [16.75, -93.10], [17.07, -96.72], [18.85, -97.10],
+    [19.43, -99.13], [20.67, -100.38], [22.77, -102.97], [25.67, -105.10],
+    [28.26, -105.48], [29.56, -106.09], [31.69, -106.42],
+    // USA (suroeste → medio oeste → noreste)
+    [31.76, -106.48], [32.22, -110.93], [33.45, -112.07], [35.08, -106.65],
+    [35.69, -105.94], [38.83, -104.82], [39.74, -104.99], [41.26, -95.93],
+    [41.59, -93.62], [41.87, -87.63], [41.50, -81.69], [41.08, -78.82],
+    [40.44, -79.99], [40.68, -73.94]
+  ];
+
+  const FUTURE_ROUTE = [
+    [40.68, -73.94], [42.65, -73.75], [45.50, -73.57],  // Brooklyn → Montréal
+    [46.81, -71.21], [48.43, -89.24], [49.89, -97.13],  // Québec → Thunder Bay → Winnipeg
+    [52.13, -106.66], [53.55, -113.49], [51.05, -114.07], // Saskatoon → Edmonton → Calgary
+    [52.27, -124.73], [49.28, -123.12],                  // Bella Coola → Vancouver
+    [54.72, -127.17], [57.79, -135.32], [60.12, -149.44], [61.22, -149.90]  // BC → Juneau → Seward → Anchorage
+  ];
+
+  function buildPaths(){
+    return [
+      { coords: PAST_ROUTE, future: false },
+      { coords: FUTURE_ROUTE, future: true }
+    ];
+  }
+
+  let globe = null;
+  let initPromise = null;
+
+  function loadScript(src){
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      s.onload = resolve;
+      s.onerror = () => reject(new Error('load failed: '+src));
+      document.head.appendChild(s);
+    });
+  }
+
+  async function initGlobe(){
+    if (globe) return globe;
+    if (initPromise) return initPromise;
+    statusEl && (statusEl.textContent = 'CARGANDO…');
+
+    initPromise = (async () => {
+      // Load three + globe.gl (UMD)
+      if (!window.Globe){
+        await loadScript('https://unpkg.com/three@0.160.0/build/three.min.js');
+        await loadScript('https://unpkg.com/globe.gl@2.32.2/dist/globe.gl.min.js');
+      }
+      if (!window.Globe) throw new Error('globe.gl missing');
+
+      // Build globe instance
+      const g = Globe()(host)
+        .backgroundColor('rgba(0,0,0,0)')
+        .showGlobe(true)
+        .showAtmosphere(true)
+        .atmosphereColor('#a85f32')
+        .atmosphereAltitude(0.18)
+        .globeImageUrl(null)  // no texture — we use a flat material below
+        .width(host.clientWidth)
+        .height(host.clientHeight);
+
+      // Replace the globe's default texture with a flat cream material and outline land via polygons
+      const globeMat = g.globeMaterial();
+      globeMat.color.set('#1a1814');
+      globeMat.emissive.set('#0a0908');
+      globeMat.emissiveIntensity = 0.05;
+      globeMat.shininess = 2;
+
+      // Fetch a small-country-outline geojson for land polygons (stylized borders)
+      try {
+        const res = await fetch('https://unpkg.com/world-atlas@2.0.2/countries-110m.json');
+        const topo = await res.json();
+        // Use topojson via a tiny inline converter? Instead use a geojson mirror.
+        // Fallback: use natural-earth geojson from github
+        throw new Error('use-fallback');
+      } catch(e) {
+        // Fallback to geojson CDN
+        try{
+          const res = await fetch('https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson');
+          if (res.ok){
+            const geo = await res.json();
+            g.polygonsData(geo.features)
+              .polygonCapColor(() => 'rgba(232,223,208,0.06)')
+              .polygonSideColor(() => 'rgba(232,223,208,0.02)')
+              .polygonStrokeColor(() => 'rgba(232,223,208,0.28)')
+              .polygonAltitude(0.005);
+          }
+        } catch(err){
+          console.warn('[globe] polygons failed', err);
+        }
+      }
+
+      // Route — overland paths hugging the globe surface
+      g.pathsData(buildPaths())
+        .pathPoints('coords')
+        .pathPointLat(p => p[0])
+        .pathPointLng(p => p[1])
+        .pathPointAlt(0.003)
+        .pathColor(d => d.future
+          ? ['rgba(168,95,50,0.55)', 'rgba(168,95,50,0.55)']
+          : ['#a85f32', '#c07848'])
+        .pathStroke(d => d.future ? 1.2 : 1.6)
+        .pathDashLength(d => d.future ? 0.04 : 1)
+        .pathDashGap(d => d.future ? 0.02 : 0)
+        .pathDashAnimateTime(d => d.future ? 6000 : 0)
+        .pathTransitionDuration(0);
+
+      // Points — stops (small dots on the surface, no labels)
+      const pointData = STOPS.map(s => ({...s}));
+      g.pointsData(pointData)
+        .pointLat('lat')
+        .pointLng('lng')
+        .pointAltitude(0.005)
+        .pointRadius(d => d.current ? 0.55 : 0.35)
+        .pointColor(d => d.future ? 'rgba(168,95,50,0.55)' : d.current ? '#a85f32' : '#e8dfd0')
+        .pointsMerge(false);
+
+      // Pulsing ring at "now" (Brooklyn) — replaces the AHORA label
+      const currentStop = STOPS.find(s => s.current);
+      if (currentStop){
+        g.ringsData([currentStop])
+          .ringLat('lat')
+          .ringLng('lng')
+          .ringMaxRadius(2.4)
+          .ringPropagationSpeed(1.2)
+          .ringRepeatPeriod(1400)
+          .ringColor(() => t => `rgba(168,95,50,${1 - t})`)
+          .ringAltitude(0.004);
+      }
+
+      // Click point → sync list
+      g.onPointClick(d => {
+        if (d && d.country) {
+          syncToCountry(d.country);
+          focusOn(d);
+        }
+      });
+
+      // Initial camera — center on the Americas
+      g.pointOfView({ lat: 10, lng: -70, altitude: 2.2 }, 0);
+
+      // Auto-rotate until first interaction
+      try {
+        const ctrls = g.controls();
+        ctrls.autoRotate = true;
+        ctrls.autoRotateSpeed = 0.35;
+        ctrls.enableDamping = true;
+        ctrls.dampingFactor = 0.08;
+        ctrls.minDistance = 180;
+        ctrls.maxDistance = 600;
+        const stopRotate = () => { ctrls.autoRotate = false; };
+        host.addEventListener('pointerdown', stopRotate, { once: true });
+        host.addEventListener('wheel', stopRotate, { once: true });
+      } catch(e){}
+
+      // Responsive resize
+      const resize = () => {
+        if (!host.isConnected) return;
+        g.width(host.clientWidth).height(host.clientHeight);
+      };
+      new ResizeObserver(resize).observe(host);
+
+      // Hide loader
+      if (loading) loading.classList.add('is-hidden');
+      statusEl && (statusEl.textContent = 'EN VIVO');
+
+      globe = g;
+      return g;
+    })();
+
+    return initPromise;
+  }
+
+  // Camera focus on a stop
+  function focusOn(d){
+    if (!globe || !d) return;
+    globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.6 }, 1100);
+  }
+
+  // Bridge: tell the list to select a country (reuses existing snapshot logic)
+  function syncToCountry(country){
+    const li = document.querySelector('.ruta-country[data-country="'+country+'"]');
+    if (li) li.click();
+  }
+
+  // Reverse bridge: when a list item is activated, fly globe to it if visible
+  function onListChange(){
+    if (!globe || wrap.dataset.mode !== 'globe') return;
+    const active = document.querySelector('.ruta-country.active');
+    if (!active) return;
+    const country = active.dataset.country;
+    const coords = COORDS[country];
+    if (coords) focusOn(coords);
+  }
+
+  // Observe list clicks
+  const list = document.getElementById('rutaList');
+  if (list){
+    list.addEventListener('click', () => setTimeout(onListChange, 50));
+  }
+
+  // Toggle handlers
+  btns.forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const mode = btn.dataset.mode;
+      if (wrap.dataset.mode === mode) return;
+      btns.forEach(b => {
+        const on = b.dataset.mode === mode;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      wrap.dataset.mode = mode;
+
+      if (mode === 'globe'){
+        if (titleEl) titleEl.textContent = 'Vista global';
+        if (meta1) meta1.textContent = 'proyección · esfera';
+        if (meta2) meta2.textContent = 'WebGL · three.js';
+        try {
+          await initGlobe();
+        } catch(err){
+          console.error('[globe] init failed', err);
+          statusEl && (statusEl.textContent = 'ERROR · VOLVIENDO A PLANO');
+          setTimeout(() => {
+            document.querySelector('.mapmode-btn[data-mode="flat"]').click();
+          }, 1200);
+        }
+      } else {
+        if (titleEl) titleEl.textContent = 'Las Américas';
+        if (meta1) meta1.textContent = 'esc · 1 : 38.000.000';
+        if (meta2) meta2.textContent = 'proyección bonne';
+      }
+    });
+  });
+
+  // Default mode
+  wrap.dataset.mode = 'flat';
+})();
+
+// ------- Ruta snapshot sync -------
+(function(){
+  const list = document.getElementById('rutaList');
+  const countries = list.querySelectorAll('.ruta-country');
+  const mapStops = document.querySelectorAll('.ruta-mapcanvas .marker-stop');
+  const snapCountry = document.getElementById('snapCountry');
+  const snapQuote = document.getElementById('snapQuote');
+  const snapKm = document.getElementById('snapKm');
+  const snapDias = document.getElementById('snapDias');
+  const snapLleg = document.getElementById('snapLleg');
+  const snapNum = document.getElementById('snapNum');
+  const snapYear = document.getElementById('snapYear');
+
+  function updateFrom(li){
+    countries.forEach(c => c.classList.remove('active'));
+    li.classList.add('active');
+    const cn = li.dataset.country;
+    mapStops.forEach(m => m.classList.toggle('active', m.dataset.country === cn));
+    const name = li.querySelector('.ruta-country-name').innerHTML;
+    snapCountry.innerHTML = name;
+    snapQuote.textContent = '“' + li.dataset.quote + '”';
+    const km = parseInt(li.dataset.km, 10);
+    snapKm.innerHTML = km.toLocaleString('es') + ' <small style="font-family:var(--f-mono);font-size:10px;color:var(--ink-mute)">km</small>';
+    snapDias.textContent = li.dataset.dias;
+    snapLleg.textContent = li.dataset.llegada;
+    const num = li.querySelector('.num').textContent.replace('·', '').trim();
+    snapNum.textContent = num + ' · capítulo';
+    const yr = li.querySelector('.ruta-country-year').textContent;
+    snapYear.textContent = yr;
+  }
+
+  countries.forEach(c => {
+    c.addEventListener('mouseenter', () => updateFrom(c));
+    c.addEventListener('click', () => updateFrom(c));
+  });
+
+  // Map marker clicks → activate corresponding list item
+  mapStops.forEach(m => {
+    m.addEventListener('click', () => {
+      const cn = m.dataset.country;
+      if (cn === 'alaska') return; // future, no list entry
+      const li = list.querySelector(`[data-country="${cn}"]`);
+      if (li){
+        updateFrom(li);
+        const r = li.getBoundingClientRect();
+        const y = r.top + window.scrollY - (window.innerHeight/2 - r.height/2);
+        window.scrollTo({top: y, behavior: 'smooth'});
+      }
+    });
+    m.addEventListener('mouseenter', () => {
+      const cn = m.dataset.country;
+      if (cn === 'alaska') return;
+      const li = list.querySelector(`[data-country="${cn}"]`);
+      if (li) updateFrom(li);
+    });
+  });
+})();
+
+// ------- Language switch ES / EN -------
+(function(){
+  const btn = document.getElementById('langSwitch');
+  if (!btn) return;
+  const STORAGE_KEY = 'tabfern.lang';
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    btn.querySelectorAll('span[data-lang]').forEach(s => {
+      s.classList.toggle('active', s.dataset.lang === lang);
+    });
+    document.querySelectorAll('[data-en]').forEach(el => {
+      if (!('es' in el.dataset)) el.dataset.es = el.innerHTML;
+      el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.es;
+    });
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch(e){}
+  }
+  btn.addEventListener('click', () => {
+    const cur = document.documentElement.lang === 'en' ? 'en' : 'es';
+    setLang(cur === 'en' ? 'es' : 'en');
+  });
+  let initial = 'es';
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === 'en' || saved === 'es') initial = saved;
+  } catch(e){}
+  setLang(initial);
+})();
+
+// ------- Reveal on scroll -------
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(e => e.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(e => io.observe(e));
+})();
+</script>
+
+</body>
+</html>

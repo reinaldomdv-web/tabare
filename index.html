@@ -2753,17 +2753,17 @@ footer{
         .backgroundColor('rgba(0,0,0,0)')
         .showGlobe(true)
         .showAtmosphere(true)
-        .atmosphereColor('#a85f32')
-        .atmosphereAltitude(0.18)
+        .atmosphereColor('#7ab3d6')
+        .atmosphereAltitude(0.22)
         .globeImageUrl(null)  // no texture — we use a flat material below
         .width(host.clientWidth)
         .height(host.clientHeight);
 
-      // Replace the globe's default texture with a flat cream material and outline land via polygons
+      // Realistic-earth palette: navy ocean + cream continents
       const globeMat = g.globeMaterial();
-      globeMat.color.set('#1a1814');
-      globeMat.emissive.set('#0a0908');
-      globeMat.emissiveIntensity = 0.05;
+      globeMat.color.set('#0f2540');
+      globeMat.emissive.set('#051427');
+      globeMat.emissiveIntensity = 0.08;
       globeMat.shininess = 2;
 
       // Fetch a small-country-outline geojson for land polygons (stylized borders)
@@ -2780,9 +2780,9 @@ footer{
           if (res.ok){
             const geo = await res.json();
             g.polygonsData(geo.features)
-              .polygonCapColor(() => 'rgba(232,223,208,0.06)')
-              .polygonSideColor(() => 'rgba(232,223,208,0.02)')
-              .polygonStrokeColor(() => 'rgba(232,223,208,0.28)')
+              .polygonCapColor(() => 'rgba(232,223,208,0.18)')
+              .polygonSideColor(() => 'rgba(232,223,208,0.08)')
+              .polygonStrokeColor(() => 'rgba(232,223,208,0.55)')
               .polygonAltitude(0.005);
           }
         } catch(err){
